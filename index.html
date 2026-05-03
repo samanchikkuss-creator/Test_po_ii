@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Тесты по ИИ</title>
+    <title>Тесты по Базам Данных | Самандар</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -53,7 +53,7 @@
             margin: 0 auto;
         }
 
-
+        /* Анимации */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -68,7 +68,7 @@
             animation: fadeIn 0.5s ease-out;
         }
 
-
+        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -89,7 +89,7 @@
             gap: 10px;
         }
 
-
+        /* Кнопка темы */
         .theme-toggle {
             background: var(--surface-light);
             border: 2px solid var(--border-light);
@@ -113,7 +113,7 @@
             transform: scale(1.05);
         }
 
-
+        /* Поиск */
         .search-container {
             margin-bottom: 30px;
         }
@@ -150,7 +150,7 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
 
-
+        /* Карточки этапов */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -214,6 +214,7 @@
             margin-top: 5px;
         }
 
+        /* Кнопки */
         .btn {
             padding: 12px 24px;
             border: none;
@@ -247,6 +248,7 @@
             color: white;
         }
 
+        /* ОПЦИИ ВОПРОСОВ — ИСПРАВЛЕННЫЕ ДЛЯ ТЁМНОЙ ТЕМЫ */
         .option {
             padding: 16px 20px;
             border: 2px solid var(--border-light);
@@ -272,16 +274,44 @@
             border-color: var(--primary);
         }
 
+        /* Правильный ответ */
         .option.correct {
             background: var(--success);
             color: white;
             border-color: var(--success);
         }
 
+        /* Неправильный ответ */
         .option.wrong {
             background: var(--error);
             color: white;
             border-color: var(--error);
+        }
+
+        /* ВЫДЕЛЕНИЕ ПРИ КЛИКЕ (видно в обеих темах) */
+        .option:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        /* ТЁМНАЯ ТЕМА — яркая подсветка нажатого ответа */
+        body.dark .option:active:not(:disabled) {
+            border-color: #ffaa00;
+            box-shadow: 0 0 0 3px #ffaa00;
+            background: var(--primary-dark);
+        }
+
+        /* УСИЛЕННАЯ ВИДИМОСТЬ ПРАВИЛЬНЫХ/НЕПРАВИЛЬНЫХ ОТВЕТОВ В ТЁМНОЙ ТЕМЕ */
+        body.dark .option.correct {
+            background: #0d9488;
+            border: 2px solid #2dd4bf;
+            box-shadow: 0 0 0 1px #2dd4bf;
+            font-weight: bold;
+        }
+
+        body.dark .option.wrong {
+            background: #b91c1c;
+            border: 2px solid #f87171;
+            box-shadow: 0 0 0 1px #f87171;
         }
 
         .option:disabled {
@@ -289,6 +319,7 @@
             opacity: 0.8;
         }
 
+        /* Навигация по вопросам */
         .numbers-nav {
             display: flex;
             flex-wrap: wrap;
@@ -374,6 +405,7 @@
             transition: width 0.5s ease;
         }
 
+        /* Таймер */
         .timer {
             font-size: 2rem;
             font-weight: bold;
@@ -384,6 +416,7 @@
             color: transparent;
         }
 
+        /* Текст вопроса */
         .question-text {
             background: var(--surface-light);
             border-radius: 20px;
@@ -400,6 +433,7 @@
             color: var(--text-dark);
         }
 
+        /* Боковая панель */
         .side-panel {
             position: fixed;
             top: 0;
@@ -441,6 +475,7 @@
             display: block;
         }
 
+        /* Уведомления */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -483,6 +518,7 @@
             background: var(--surface-dark);
         }
 
+        /* Адаптив */
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -508,6 +544,7 @@
             }
         }
 
+        /* Скроллбар */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -537,7 +574,7 @@
         <div class="header">
             <h1>
                 <i class="fas fa-database"></i>
-                Тесты по ИИ
+                Тесты по Базам Данных
                 <i class="fas fa-graduation-cap"></i>
             </h1>
             <button class="theme-toggle" onclick="toggleTheme()">
@@ -671,6 +708,7 @@
     </div>
 
     <script>
+        // ВСЕ ВОПРОСЫ (226 штук)
         const allQuestionsRaw = [
             ["Что такое анализ предложений в технологии обработки естественного языка?", "Процесс изучения грамматической, синтаксической и семантической структуры предложения.", "Метод обнаружения звукового сигнала с помощью компьютера", "Процесс разделения текста на части", "Разделение слов в предложении"],
             ["Как представлена логическая модель?", "Факты, отношения и выводы", "Связи между данными", "Правила вывода", "Извлечение знаний"],
@@ -907,6 +945,7 @@
         let timerInterval;
         let currentStageName = '';
 
+        // Тема
         function toggleTheme() {
             document.body.classList.toggle('dark');
             const isDark = document.body.classList.contains('dark');
